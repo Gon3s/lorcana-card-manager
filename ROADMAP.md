@@ -48,14 +48,14 @@
 - [ ] Initialiser Git avec `.gitignore` adapté
 - [ ] Créer `README.md` principal avec architecture et commandes
 
-### 1.2 Base de données SQLite
-- [ ] Définir le schéma de données
+### 1.2 Base de données SQLite ✅
+- [x] Définir le schéma de données
   - Table `cards` (id, nom, sous_titre, encre, cout, force, volonte, lore, mots_cles, texte, texte_fr, rarete, image_path, status, created_at, updated_at)
   - Table `card_images` (id, card_id, original_path, status: non_traite|en_cours|attente_validation|valide, created_at)
   - Table `ocr_logs` (id, card_image_id, raw_response, error_message, created_at)
-- [ ] Créer les scripts de migration (Alembic)
-- [ ] Ajouter des indexes pour les recherches fréquentes
-- [ ] Script de seed pour données de test
+- [x] Créer les scripts de migration (Alembic)
+- [x] Ajouter des indexes pour les recherches fréquentes
+- [x] Script de seed pour données de test
 
 ### 1.3 Docker & Environnement
 - [ ] **Vérifier Docker sur WSL**

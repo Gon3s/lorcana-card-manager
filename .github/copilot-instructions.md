@@ -1,261 +1,152 @@
-# GitHub Copilot Instructions - Lorcana Card Manager# GitHub Copilot Instructions - Lorcana Card Manager
+# GitHub Copilot Instructions - Lorcana Card Manager
 
+## 🎯 Project Overview
 
+**Lorcana Card Manager**: Application web pour ajouter et visualiser des cartes Lorcana via OCR.
 
-## 🎯 Project Overview## 🎯 Project Overview
+**Architecture**:
+- 🐍 Backend: FastAPI (Python)
+- 🎨 Frontend: Angular (TypeScript)
+- 💾 Database: SQLite
+- 🐳 Deployment: Docker (3 containers)
 
-**Lorcana Card Manager**: A web application for adding and visualizing new Lorcana cards via OCR.**Lorcana Card Manager**: A web application for adding and visualizing new Lorcana cards via OCR.
+**Separation of concerns**:
+- ✅ Ce projet: Gestion des cartes (ajout/visualisation)
+- ✅ `lorcana_price`: Tracking des prix (Google Sheets + scrapers)
 
+---
 
+## 📁 Hierarchical Context
 
-**Architecture**:**Architecture**:
+**This file contains GLOBAL instructions for the entire project.**
 
-- 🐍 Backend: FastAPI (Python)- 🐍 Backend: FastAPI (Python)
+Specific instructions for each component are in:
+- `backend/.github/copilot-instructions.md` → Python/FastAPI
+- `frontend/.github/copilot-instructions.md` → Angular/TypeScript
+- `database/.github/copilot-instructions.md` → SQL/Migrations
 
-- 🎨 Frontend: Angular (TypeScript)- 🎨 Frontend: Angular (TypeScript)
+⚠️ **When working in a specific folder, follow its local instructions first.**
 
-- 💾 Database: SQLite- 💾 Database: SQLite
+---
 
-- 🐳 Deployment: Docker (3 containers)- 🐳 Deployment: Docker (3 containers)
+## 🏗️ Architecture & Components
 
+### Backend API (FastAPI)
+- RESTful API with OpenAPI documentation
+- OCR service using Groq API
+- Image upload and storage
+- SQLAlchemy ORM with SQLite
 
+### Frontend (Angular)
+- Reactive UI with RxJS
+- Image upload with drag & drop
+- Card validation interface
+- List and detail views with filters
 
-**Separation of concerns**:**Separation of concerns**:
+### Database (SQLite)
+- `cards`: Card information
+- `card_images`: Image metadata and status
+- `ocr_logs`: OCR processing history
 
-- ✅ This project: Card management (add/view)- ✅ This project: Card management (add/view)
+---
 
-- ✅ `lorcana_price`: Price tracking (Google Sheets + scrapers)- ✅ lorcana_price: Price tracking (Google Sheets + scrapers)
+## 🔄 Workflow
 
+1. **Upload**: User uploads card image
+2. **OCR**: Groq API extracts card information
+3. **Validation**: User reviews and corrects data
+4. **Storage**: Card saved with 'validated' status
+5. **Visualization**: Browse and edit cards
 
+### Image States
+- `non_traite`: Uploaded, not processed
+- `en_cours`: OCR in progress
+- `attente_validation`: Awaiting user validation
+- `valide`: Validated and saved
 
-------
+---
 
+## 📐 Shared Data Models
 
-
-## 🏗️ Architecture & Components## 🏗️ Architecture & Components
-
-
-
-### Backend API (FastAPI)### Backend API (FastAPI)
-
-- RESTful API with automatic OpenAPI documentation- RESTful API with automatic OpenAPI documentation
-
-- OCR service using Groq API- OCR service using Groq API
-
-- Image upload and storage management- Image upload and storage management
-
-- SQLAlchemy ORM with SQLite- SQLAlchemy ORM with SQLite
-
-
-
-### Frontend (Angular)### Frontend (Angular)
-
-- Reactive UI with RxJS- Reactive UI with RxJS
-
-- Image upload with drag & drop- Image upload with drag & drop
-
-- Card validation interface- Card validation interface
-
-- List and detail views with filters- List and detail views with filters
-
-
-
-### Database (SQLite)### Database (SQLite)
-
-- `cards`: Card information- cards: Card information
-
-- `card_images`: Image metadata and status- card_images: Image metadata and status
-
-- `ocr_logs`: OCR processing history- ocr_logs: OCR processing history
-
-
-
-------
-
-
-
-## 🔄 Workflow## 🔄 Workflow
-
-
-
-1. **Upload**: User uploads card image1. **Upload**: User uploads card image
-
-2. **OCR**: Groq API extracts card information2. **OCR**: Groq API extracts card information
-
-3. **Validation**: User reviews and corrects data3. **Validation**: User reviews and corrects data
-
-4. **Storage**: Card saved with 'validated' status4. **Storage**: Card saved with 'validated' status
-
-5. **Visualization**: Browse and edit cards5. **Visualization**: Browse and edit cards
-
-
-
-### Image States### Image States
-
-- `non_traite`: Uploaded, not processed- on_traite\: Uploaded, not processed
-
-- `en_cours`: OCR in progress- \n_cours\: OCR in progress
-
-- `attente_validation`: Awaiting user validation- \ttente_validation\: Awaiting user validation
-
-- `valide`: Validated and saved- \alide\: Validated and saved
-
-
-
-------
-
-
-
-## 📐 Shared Data Models## 📐 Shared Data Models
-
-
-
-### CardInfo (Pydantic)### CardInfo (Pydantic)
-
+### CardInfo (Pydantic)
 Used for OCR extraction and validation:
+- `encre`: Ink color (Amber, Amethyst, Emerald, Ruby, Sapphire, Steel)
+- `encrable`: Whether card is inkable (boolean)
+- `nom`: Card name
+- `sous_titre`: Subtitle
+- `mots_cles`: Keywords list
+- `force`: Strength value
+- `volonte`: Willpower value
+- `texte`: Ability text
+- `lore`: Lore value
+- `rarete`: Rarity (Common, Uncommon, Rare, Super Rare, Legendary, Enchanted)
+- `cout`: Ink cost
 
-- encre: Ink color (Amber, Amethyst, Emerald, Ruby, Sapphire, Steel)
+---
 
-- encrable: Whether card is inkable (boolean)### Card States
+## 🎨 Code Conventions
 
-- nom: Card name- on_traite\, \n_cours\, \ttente_validation\, \alide
-
-- sous_titre: Subtitle---
-
-- mots_cles: Keywords list
-
-- force: Strength value## 🎨 Code Conventions
-
-- volonte: Willpower value
-
-- texte: Ability text### General
-
-- lore: Lore value- Use descriptive variable names (English preferred)
-
-- rarete: Rarity (Common, Uncommon, Rare, Super Rare, Legendary, Enchanted)- Add docstrings to all functions/classes
-
-- cout: Ink cost- Handle errors gracefully with try/except
-
+### General
+- Use descriptive variable names
+- Add docstrings to all functions/classes
+- Handle errors gracefully with try/except
 - Use logging instead of print statements
-
-### Card States- Follow the principle of separation of concerns
-
-- `non_traite`, `en_cours`, `attente_validation`, `valide`
+- Follow the principle of separation of concerns
 
 ### Git Commits
-
----- Use gitmoji for commit messages
-
-- Follow conventional commits format
-
-## 🎨 Code Conventions- Keep commits focused and atomic
-
-
-
-### General**Examples**:
-
-- Use descriptive variable names (English preferred)- ✨ \eat: add card upload endpoint- 🐛 \ix: handle OCR timeout errors- 📝 \docs: update API documentation- ♻️ \
-
-- Add docstrings to all functions/classesefactor: improve image storage service
-
-- Handle errors gracefully with try/except---
-
-- Use logging instead of print statements
-
-- Follow the principle of separation of concerns## 🔗 Integration Points
-
-
-
-### Git Commits### Between Components
-
-- Use gitmoji for commit messages- Backend exposes REST API at \/api/*- Frontend consumes API via HTTP services
-
-- Follow conventional commits format- Docker volumes for SQLite persistence and image storage
-
+- **Format**: `<gitmoji> <type>: <description>` (ONE LINE ONLY)
+- Use gitmoji for commit type
 - Keep commits focused and atomic
 
-### With lorcana_price project
+**Examples**:
+```
+✨ feat: add card upload endpoint
+🐛 fix: handle OCR timeout errors
+♻️ refactor: improve image storage service
+📝 docs: update API documentation
+```
 
-**Examples**:- Shared data model concepts (CardInfo)
+### No Extra Documentation
+- ❌ Don't create summary .md files after each task
+- ❌ Don't create PHASE_COMPLETE.md files
+- ❌ Don't create verbose commit message files
+- ✅ Write code, test it, commit with one-line message
+- ✅ Documentation only when it's needed (README, API docs)
 
-- ✨ `feat: add card upload endpoint`- Potential future integration for price tracking
-
-- 🐛 `fix: handle OCR timeout errors`- Common logging and error handling patterns
-
-- 📝 `docs: update API documentation`
-
-- ♻️ `refactor: improve image storage service`---
-
-
-
----## 🐳 Docker Structure
-
-
+---
 
 ## 🔗 Integration Points
 
-
-
-### Between Components---
-
+### Between Components
 - Backend exposes REST API at `/api/*`
-
-- Frontend consumes API via HTTP services## 📝 Important Notes
-
+- Frontend consumes API via HTTP services
 - Docker volumes for SQLite persistence and image storage
 
-### Security
-
-### With lorcana_price project- Validate all file uploads (MIME type, size)
-
-- Shared data model concepts (CardInfo)- Sanitize user inputs
-
-- Potential future integration for price tracking- Use environment variables for secrets
-
+### With lorcana_price project
+- Shared data model concepts (CardInfo)
+- Potential future integration for price tracking
 - Common logging and error handling patterns
 
-### Performance
+---
 
----- Implement pagination for card lists
+## 🐳 Docker Structure
 
-- Optimize database queries with indexes
+Three services: backend (FastAPI), frontend (Angular), volumes for data persistence.
 
-## 🐳 Docker Structure- Handle large images efficiently
-
-
-
-Three services: backend (FastAPI), frontend (Angular), volumes for data persistence.### Errors
-
-- Return appropriate HTTP status codes
-
-**Ports**:- Provide clear error messages
-
-- Backend: 8000- Log errors with context for debugging
-
+**Ports**:
+- Backend: 8000
 - Frontend: 4200
 
----
-
 **Volumes**:
-
-- SQLite database## 🚀 Quick Start
-
+- SQLite database
 - Uploaded images
 
-### Development
-
 ---
 
+## 📝 Important Notes
 
-
-## 📝 Important Notes### Access
-
-- Backend API: http://localhost:8000
-
-### Security- API Docs: http://localhost:8000/docs
-
-- Validate all file uploads (MIME type, size)- Frontend: http://localhost:4200
-
+### Security
+- Validate all file uploads (MIME type, size)
 - Sanitize user inputs
 - Use environment variables for secrets
 

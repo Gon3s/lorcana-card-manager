@@ -6,7 +6,7 @@ uvicorn[standard]==0.24.0
 
 # Database
 sqlalchemy==2.0.23
-alembic==1.12.1
+alembic==1.17.0
 
 # Pydantic for validation
 pydantic==2.12.3

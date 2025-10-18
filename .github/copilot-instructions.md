@@ -86,12 +86,35 @@ Used for OCR extraction and validation:
 
 ## 🎨 Code Conventions
 
+### Architecture Principles
+- **SOLID Principles**: Apply Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+- **Clean Architecture**: Separate Domain, Application, Infrastructure, and Presentation layers
+- **Dependency Rule**: Dependencies point INWARD (outer layers depend on inner layers, never reverse)
+- **Separation of Concerns**: Each module has a single, well-defined responsibility
+
 ### General
 - Use descriptive variable names
 - Add docstrings to all functions/classes
-- Handle errors gracefully with try/except
+- Handle errors gracefully with custom exceptions
 - Use logging instead of print statements
-- Follow the principle of separation of concerns
+- Type hints everywhere (Python, TypeScript)
+- Dependency Injection over direct instantiation
+- Interfaces/Abstract classes for contracts
+
+### Backend (Python/FastAPI)
+- **Domain Layer**: Pure Python entities, no framework dependencies
+- **Application Layer**: Use cases (business logic), repository interfaces
+- **Infrastructure Layer**: Database, external services, file storage
+- **Presentation Layer**: API endpoints, DTOs (Pydantic schemas)
+- Repository Pattern for data access
+- Use cases for business logic orchestration
+
+### Frontend (Angular)
+- **Smart/Dumb Components**: Smart (container) vs Dumb (presentational)
+- **Services**: Business logic and API calls
+- **RxJS**: Reactive state management
+- **Dependency Injection**: Angular's DI system
+- **Single Responsibility**: One component, one purpose
 
 ### Git Commits
 - **Format**: `<gitmoji> <type>: <description>` (ONE LINE ONLY)

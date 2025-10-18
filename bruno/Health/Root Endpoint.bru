@@ -1,0 +1,24 @@
+meta {
+  name: Root Endpoint
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.message: eq Welcome to Lorcana Card Manager API
+  res.body.version: isDefined
+  res.body.docs: eq /docs
+}
+
+tests {
+  test("Should have API version", function() {
+    expect(res.body.version).to.be.a('string');
+  });
+}

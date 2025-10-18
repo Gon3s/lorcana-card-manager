@@ -1,0 +1,34 @@
+meta {
+  name: Upload Invalid Format
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}{{apiPrefix}}/images/upload
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  file: @file(./test-data/invalid.txt)
+}
+
+assert {
+  res.status: eq 400
+  res.body.detail: contains Unsupported file type
+}
+
+tests {
+  test("Should reject invalid file formats", function() {
+    expect(res.status).to.equal(400);
+    expect(res.body.detail).to.be.a('string');
+  });
+}
+
+docs {
+  # Upload Invalid Format
+  
+  Test error handling for unsupported file formats.
+  Should return 400 Bad Request.
+}

@@ -34,3 +34,13 @@ class OCRProcessingError(DomainException):
 class StorageError(DomainException):
     """Raised when file storage operation fails."""
     pass
+
+
+class UnsupportedFileTypeError(DomainException):
+    """Raised when file type is not supported."""
+    pass
+
+
+class FileTooLargeError(DomainException):
+    """Raised when file size exceeds limit."""
+    pass

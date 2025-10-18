@@ -1,0 +1,39 @@
+meta {
+  name: Get Image by ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}{{apiPrefix}}/images/{{lastImageId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.id: eq {{lastImageId}}
+  res.body.original_path: isDefined
+  res.body.status: isDefined
+  res.body.created_at: isDefined
+}
+
+tests {
+  test("Should return image details", function() {
+    expect(res.body.id).to.be.a('number');
+    expect(res.body.original_path).to.be.a('string');
+    expect(res.body.status).to.be.oneOf(['non_traite', 'en_cours', 'attente_validation', 'valide', 'error']);
+  });
+  
+  test("Should have timestamps", function() {
+    expect(res.body.created_at).to.be.a('string');
+  });
+}
+
+docs {
+  # Get Image by ID
+  
+  Retrieve details of an uploaded image.
+  
+  **Note**: Use the `lastImageId` variable set by the Upload Image request.
+}

@@ -1,0 +1,7 @@
+{
+  "name": "lorcana-card-manager-frontend",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "echo 'Build placeholder' && mkdir -p dist/lorcana-card-manager && echo '<h1>Lorcana Card Manager - Coming Soon</h1>' > dist/lorcana-card-manager/index.html"
+  }
+}

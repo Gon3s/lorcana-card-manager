@@ -32,10 +32,12 @@ class Settings(BaseSettings):
     groq_timeout: int = 30
     
     # CORS
-    cors_origins: list[str] = [
-        "http://localhost:4200",
-        "http://localhost:8000",
-    ]
+    cors_origins: str = "http://localhost:4200"
+    
+    @property
+    def cors_origins_list(self) -> list[str]:
+        """Convert comma-separated CORS origins to list."""
+        return [origin.strip() for origin in self.cors_origins.split(",")]
     
     class Config:
         env_file = ".env"

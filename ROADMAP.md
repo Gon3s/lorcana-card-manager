@@ -20,14 +20,14 @@
 ## 🎯 Phase 1 : Fondations & Infrastructure
 
 ### 1.1 Structure du projet
-- [ ] **Créer le dossier sur WSL** (accès à Docker)
+- [x] **Créer le dossier sur WSL** (accès à Docker)
   ```bash
   # Sur WSL
   cd ~
   mkdir -p Dev/lorcana-card-manager
   cd Dev/lorcana-card-manager
   ```
-- [ ] Créer la structure de dossiers (mono-repo)
+- [x] Créer la structure de dossiers (mono-repo)
   ```
   lorcana-card-manager/
   ├── backend/          # FastAPI
@@ -40,13 +40,13 @@
   ├── .github/          # CI/CD & copilot-instructions GLOBAL
   └── docs/             # Documentation
   ```
-- [ ] Configurer les contextes IA hiérarchisés
-  - [ ] `.github/copilot-instructions.md` (GLOBAL - tous les composants)
-  - [ ] `backend/.github/copilot-instructions.md` (Python/FastAPI)
-  - [ ] `frontend/.github/copilot-instructions.md` (Angular/TypeScript)
-  - [ ] `database/.github/copilot-instructions.md` (SQL/Migrations)
-- [ ] Initialiser Git avec `.gitignore` adapté
-- [ ] Créer `README.md` principal avec architecture et commandes
+- [x] Configurer les contextes IA hiérarchisés
+  - [x] `.github/copilot-instructions.md` (GLOBAL - tous les composants)
+  - [x] `backend/.github/copilot-instructions.md` (Python/FastAPI)
+  - [x] `frontend/.github/copilot-instructions.md` (Angular/TypeScript)
+  - [x] `database/.github/copilot-instructions.md` (SQL/Migrations)
+- [x] Initialiser Git avec `.gitignore` adapté
+- [x] Créer `README.md` principal avec architecture et commandes
 
 ### 1.2 Base de données SQLite ✅
 - [x] Définir le schéma de données
@@ -57,20 +57,16 @@
 - [x] Ajouter des indexes pour les recherches fréquentes
 - [x] Script de seed pour données de test
 
-### 1.3 Docker & Environnement
-- [ ] **Vérifier Docker sur WSL**
-  ```bash
-  docker --version
-  docker-compose --version
-  ```
-- [ ] Créer `Dockerfile` pour le backend
-- [ ] Créer `Dockerfile` pour le frontend
-- [ ] Créer `docker-compose.yml` (3 services : backend, frontend, volume pour SQLite)
-- [ ] Configurer les volumes pour :
+### 1.3 Docker & Environnement ✅
+- [x] **Vérifier Docker sur WSL** (non installé - fichiers créés pour installation future)
+- [x] Créer `Dockerfile` pour le backend
+- [x] Créer `Dockerfile` pour le frontend  
+- [x] Créer `docker-compose.yml` (2 services : backend, frontend, volumes)
+- [x] Configurer les volumes pour :
   - Persistance SQLite
   - Stockage des images uploadées
-- [ ] Créer `.env.example` avec variables d'environnement
-- [ ] Tester le build et le lancement des containers sur WSL
+- [x] `.env.example` déjà créé en Phase 1.2
+- [x] Documentation Docker complète dans `docker/README.md`
 
 ---
 

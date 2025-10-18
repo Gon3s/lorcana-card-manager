@@ -2,22 +2,32 @@
 
 ## 📋 Vue d'ensemble
 
-Cette partie gère le schéma de base de données SQLite, les migrations avec Alembic, et les scripts de seed.
+Cette documentation décrit le schéma de base de données SQLite.
 
-## 🗂️ Structure
+**⚠️ Note importante** : Les fichiers de migration Alembic et le script de seed sont maintenant dans `backend/` car ils font partie intégrante de l'application FastAPI.
+
+## � Structure
 
 ```
-database/
-├── .github/
-│   └── copilot-instructions.md  # Contexte IA pour SQL/Migrations
-├── migrations/
+backend/
+├── alembic/                      # Migrations Alembic
 │   ├── env.py                    # Configuration Alembic
 │   ├── script.py.mako            # Template pour migrations
 │   └── versions/
 │       └── 001_initial_schema.py # Migration initiale
 ├── alembic.ini                   # Configuration Alembic
 ├── seed.py                       # Script de seed avec données test
-└── README.md                     # Ce fichier
+├── init_db.sh                    # Script d'initialisation
+└── app/
+    └── models/                   # Modèles SQLAlchemy
+        ├── card.py
+        ├── card_image.py
+        └── ocr_log.py
+
+database/
+├── .github/
+│   └── copilot-instructions.md  # Contexte IA pour SQL/Migrations
+└── README.md                     # Ce fichier (documentation)
 ```
 
 ## 📊 Schéma de la base de données
@@ -106,23 +116,27 @@ attente_validation → valide
 
 ### Migrations Alembic
 
+⚠️ **Toutes les commandes Alembic doivent être exécutées depuis le dossier `backend/`**
+
 #### Appliquer les migrations
 
 ```bash
-# Depuis le dossier database/
-cd database
+# Depuis le dossier backend/
+cd backend
 
 # Appliquer toutes les migrations
 alembic upgrade head
 
-# Appliquer une migration spécifique
-alembic upgrade +1
-alembic upgrade 001_initial_schema
+# Ou utiliser le script d'initialisation
+./init_db.sh
 ```
 
 #### Créer une nouvelle migration
 
 ```bash
+# Depuis le dossier backend/
+cd backend
+
 # Migration vide
 alembic revision -m "description de la migration"
 
@@ -133,6 +147,9 @@ alembic revision --autogenerate -m "description"
 #### Revenir en arrière
 
 ```bash
+# Depuis le dossier backend/
+cd backend
+
 # Revenir d'une migration
 alembic downgrade -1
 
@@ -146,6 +163,9 @@ alembic downgrade base
 #### Afficher l'historique
 
 ```bash
+# Depuis le dossier backend/
+cd backend
+
 # Voir l'historique des migrations
 alembic history
 
@@ -158,8 +178,8 @@ alembic current
 #### Insérer des données de test
 
 ```bash
-# Depuis le dossier database/
-cd database
+# Depuis le dossier backend/
+cd backend
 
 # Seed simple
 python seed.py
@@ -225,7 +245,7 @@ Les modèles SQLAlchemy sont définis dans `backend/app/models/` :
 - `ocr_log.py`: Modèle OCRLog
 - `base.py`: Base SQLAlchemy
 
-Les migrations Alembic importent automatiquement ces modèles pour détecter les changements.
+Les migrations Alembic sont dans `backend/alembic/` et importent automatiquement ces modèles pour détecter les changements.
 
 ## 🐳 Utilisation avec Docker
 

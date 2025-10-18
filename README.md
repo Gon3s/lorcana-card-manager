@@ -116,6 +116,12 @@ npm start
 cd backend
 alembic upgrade head    # Appliquer les migrations
 alembic revision -m "description"  # Créer une migration
+
+# Ou utiliser le script d'initialisation
+./init_db.sh
+
+# Seed avec données de test
+python seed.py --clear
 ```
 
 ## 📝 API Endpoints

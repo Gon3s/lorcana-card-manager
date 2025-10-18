@@ -7,7 +7,7 @@ set -e  # Exit on error
 
 echo "🗄️  Initializing Lorcana Card Manager Database..."
 
-# Change to database directory
+# Change to backend directory
 cd "$(dirname "$0")"
 
 # Check if Alembic is installed

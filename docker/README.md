@@ -90,7 +90,7 @@ docker compose down -v
 
 # Execute command in running container
 docker compose exec backend bash
-docker compose exec backend python database/seed.py
+docker compose exec backend python seed.py
 
 # Check service status
 docker compose ps
@@ -99,14 +99,17 @@ docker compose ps
 ### Database Operations
 
 ```bash
-# Run migrations
+# Initialize database (migrations + seed)
+docker compose exec backend ./init_db.sh
+
+# Run migrations only
 docker compose exec backend alembic upgrade head
 
 # Create a migration
 docker compose exec backend alembic revision -m "description"
 
 # Seed database
-docker compose exec backend python database/seed.py --clear
+docker compose exec backend python seed.py --clear
 
 # Access SQLite database
 docker compose exec backend sqlite3 /app/data/lorcana_cards.db
@@ -115,16 +118,16 @@ docker compose exec backend sqlite3 /app/data/lorcana_cards.db
 ## 📁 Volume Structure
 
 ```
-lorcana-card-manager/
-├── data/               # SQLite database (persisted)
+backend/
+├── data/               # SQLite database (Docker volume)
 │   └── lorcana_cards.db
-├── uploads/            # Uploaded card images (persisted)
+├── uploads/            # Uploaded card images (Docker volume)
 │   └── YYYY-MM-DD/
 │       └── *.jpg
 ```
 
 These folders are:
-- Created automatically by Docker
+- Created automatically in backend/ by Docker volumes
 - Persistent across container restarts
 - Ignored by Git (see `.gitignore`)
 

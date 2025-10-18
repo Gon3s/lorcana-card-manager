@@ -1,21 +1,17 @@
 """Seed script to populate the database with test data."""
 
 import os
-import sys
 from datetime import datetime
-
-# Add parent directory to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from backend.app.models.base import Base
-from backend.app.models.card import Card
-from backend.app.models.card_image import CardImage
-from backend.app.models.ocr_log import OCRLog
+from app.models.base import Base
+from app.models.card import Card
+from app.models.card_image import CardImage
+from app.models.ocr_log import OCRLog
 
 # Database URL
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///../lorcana_cards.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./lorcana_cards.db")
 
 # Create engine and session
 engine = create_engine(DATABASE_URL)

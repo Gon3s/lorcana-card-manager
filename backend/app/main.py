@@ -37,8 +37,12 @@ async def health_check():
     return {"status": "healthy", "service": "lorcana-card-manager"}
 
 
-# Import routers will be added here
-# from app.api import cards, images, ocr
-# app.include_router(cards.router, prefix="/api/cards", tags=["cards"])
-# app.include_router(images.router, prefix="/api/images", tags=["images"])
-# app.include_router(ocr.router, prefix="/api/ocr", tags=["ocr"])
+# Import and include routers
+from app.api import images
+
+app.include_router(images.router)
+
+# Future routers:
+# from app.api import cards, ocr
+# app.include_router(cards.router)
+# app.include_router(ocr.router)

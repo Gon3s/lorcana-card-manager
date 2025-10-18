@@ -26,6 +26,12 @@ class Settings(BaseSettings):
     max_upload_size: int = 10 * 1024 * 1024  # 10 MB
     allowed_extensions: list[str] = ["jpg", "jpeg", "png"]
     
+    # Make UPLOAD_FOLDER available as uppercase for compatibility
+    @property
+    def UPLOAD_FOLDER(self) -> str:
+        """Uppercase property for upload folder."""
+        return self.upload_folder
+    
     # OCR / Groq API
     groq_api_key: Optional[str] = None
     groq_model: str = "llama-3.2-90b-vision-preview"

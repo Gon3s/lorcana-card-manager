@@ -1,4 +1,5 @@
-"""SQLAlchemy ORM models."""
-from .card_image_model import CardImageModel
+"""SQLAlchemy ORM models.
 
-__all__ = ["CardImageModel"]
+Note: Currently using legacy models from app/models/.
+Will be migrated to this location following Clean Architecture.
+"""

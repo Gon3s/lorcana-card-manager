@@ -72,33 +72,44 @@
 
 ## 🚀 Phase 2 : Backend API (FastAPI)
 
-### 2.1 Setup du projet FastAPI
-- [ ] Initialiser FastAPI avec structure modulaire
+### 2.1 Setup du projet FastAPI ✅
+- [x] Initialiser FastAPI avec structure Clean Architecture
   ```
   backend/
   ├── app/
-  │   ├── api/          # Endpoints
-  │   ├── core/         # Config, security
-  │   ├── models/       # SQLAlchemy models
-  │   ├── schemas/      # Pydantic schemas
-  │   ├── services/     # Business logic
-  │   └── utils/        # Helpers (OCR, logger)
+  │   ├── domain/           # Entities, enums, exceptions (pure Python)
+  │   ├── application/      # Use cases, interfaces (Ports)
+  │   ├── infrastructure/   # Repositories, external services (Adapters)
+  │   ├── api/              # Endpoints (Presentation)
+  │   ├── schemas/          # DTOs (Pydantic)
+  │   ├── core/             # Config, database
+  │   └── models/           # SQLAlchemy ORM (legacy, à migrer)
   ├── tests/
   └── requirements.txt
   ```
-- [ ] Configurer SQLAlchemy + SQLite
-- [ ] Setup logger (réutiliser `utils/logger.py` du projet actuel)
-- [ ] Configurer CORS pour Angular
-- [ ] Ajouter health check endpoint (`/health`)
+- [x] Configurer SQLAlchemy + SQLite
+- [x] Setup logger
+- [x] Configurer CORS pour Angular
+- [x] Ajouter health check endpoint (`/health`)
+- [x] SOLID principles + Clean Architecture appliqués
 
-### 2.2 Gestion des images & Upload
-- [ ] **POST** `/api/images/upload`
+### 2.2 Gestion des images & Upload ✅
+- [x] **POST** `/api/images/upload`
   - Recevoir l'image (multipart/form-data)
   - Valider le format (PNG, JPG)
   - Sauvegarder en local avec nom unique
   - Créer entrée `card_images` avec status `non_traite`
   - Retourner l'ID de l'image
-- [ ] Service de stockage local des images
+- [x] **GET** `/api/images/{id}` - Récupérer détails d'une image
+- [x] Service de stockage local des images
+  - Dossier organisé par date : `uploads/YYYY-MM-DD/`
+  - Noms de fichiers UUID
+- [x] Domain entities : CardImage avec logique métier
+- [x] Use case : UploadImageUseCase
+- [x] Repository pattern : IImageRepository + SQLAlchemyImageRepository
+- [x] Storage service : IStorageService + LocalStorageService
+- [x] Migration Alembic pour nouveaux champs (processed_at, error_message)
+- [x] Tests manuels réussis (curl)
   - Dossier organisé par date : `uploads/YYYY-MM-DD/`
   - Génération de thumbnails (optionnel pour MVP)
 

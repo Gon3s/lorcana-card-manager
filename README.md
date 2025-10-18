@@ -217,11 +217,34 @@ Le projet utilise des **contextes IA hiérarchisés** :
 
 Ces contextes guident GitHub Copilot pour générer du code cohérent.
 
+## 🌊 Git Flow
+
+Ce projet utilise **Git Flow** pour la gestion des branches :
+
+- `main` : Production (protégée, merge via PR uniquement)
+- `develop` : Développement (branche par défaut)
+- `feature/*` : Nouvelles fonctionnalités
+- `hotfix/*` : Correctifs urgents
+
+**Démarrer une nouvelle feature :**
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feature/nom-de-la-feature
+# ... travail ...
+git push -u origin feature/nom-de-la-feature
+# Créer PR vers develop sur GitHub
+```
+
+📖 Voir [GITFLOW.md](GITFLOW.md) pour le workflow complet.
+
 ## 📚 Documentation
 
-- [Architecture détaillée](docs/ARCHITECTURE.md) *(à créer)*
-- [API Reference](docs/API.md) *(à créer)*
-- [Guide de contribution](docs/CONTRIBUTING.md) *(à créer)*
+- [Roadmap du projet](ROADMAP.md)
+- [Workflow Git Flow](GITFLOW.md)
+- [Architecture Clean Architecture](backend/ARCHITECTURE.md)
+- [Tests (pytest + Bruno)](backend/tests/README.md)
+- [Protection des branches](.github/workflows/protect-branches.md)
 
 ## 🐛 Troubleshooting
 

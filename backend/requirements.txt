@@ -1,7 +1,7 @@
 # Backend Python Dependencies
 
 # FastAPI framework
-fastapi==0.121.2
+fastapi==0.121.3
 uvicorn[standard]==0.38.0
 
 # Database

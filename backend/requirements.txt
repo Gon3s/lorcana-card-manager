@@ -19,7 +19,7 @@ python-multipart==0.0.21
 python-dotenv==1.2.1
 
 # Image processing
-Pillow==12.0.0
+Pillow==12.1.0
 
 # Async file operations
 aiofiles==25.1.0

@@ -9,7 +9,7 @@ sqlalchemy==2.0.49
 alembic==1.18.4
 
 # Pydantic for validation
-pydantic==2.13.2
+pydantic==2.13.3
 pydantic-settings==2.14.0
 
 # CORS middleware

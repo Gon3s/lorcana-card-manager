@@ -10,7 +10,7 @@ alembic==1.18.4
 
 # Pydantic for validation
 pydantic==2.13.2
-pydantic-settings==2.13.1
+pydantic-settings==2.14.0
 
 # CORS middleware
 python-multipart==0.0.26

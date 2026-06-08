@@ -13,7 +13,7 @@ pydantic==2.13.4
 pydantic-settings==2.14.1
 
 # CORS middleware
-python-multipart==0.0.30
+python-multipart==0.0.32
 
 # Environment variables
 python-dotenv==1.2.2

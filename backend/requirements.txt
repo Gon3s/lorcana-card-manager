@@ -16,7 +16,7 @@ pydantic-settings==2.15.0
 python-multipart==0.0.32
 
 # Environment variables
-python-dotenv==1.2.2
+python-dotenv==1.2.3
 
 # Image processing
 Pillow==12.3.0

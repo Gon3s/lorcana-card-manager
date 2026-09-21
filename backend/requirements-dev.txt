@@ -1,6 +1,6 @@
 # Tests unitaires et d'intégration pour le backend
 pytest>=7.4.3
 pytest-asyncio>=0.21.1
-pytest-cov>=4.1.0
+pytest-cov>=7.1.0
 httpx>=0.25.2  # Pour tester les endpoints FastAPI
 faker>=20.1.0  # Pour générer des données de test
